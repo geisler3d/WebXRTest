@@ -25,8 +25,9 @@
         <div id="unity-webgl-logo"></div>
         
         <button id="enterar" value="Enter AR" disabled>AR</button>
+		<button id="enterarapple" onclick="window.location.href = 'https://de.w3docs.com';">AR</button>
       
-        <div id="unity-build-title">RWE Wind Turbine App</div>
+        <div id="unity-build-title"></div>
       </div>
     </div>
     <script>
@@ -85,6 +86,21 @@
         unityInstance.Module.WebXR.toggleAR();
       }, false);
 	  
+	  var android = document.getElementById("enterar");
+	  var apple = document.getElementById("enterarapple");
+	  
+	  if(/iPhone|iPad|iPod/.test(navigator.userAgent)){
+		  android.style.display = "none";
+		  apple.style.display = "block";
+	  }else{
+	    if(/Android|Opera Mini|webOS|IEMobile/i.test(navigator.userAgent)){
+	     android.style.display = "block";
+		 apple.style.display = "none";
+	  }else{
+	     android.style.display = "none";
+		 apple.style.display = "none";
+	  }
+	  }
 	     
     </script>
   </body>
