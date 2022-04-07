@@ -23,13 +23,13 @@ body { padding: 0; margin: 0 }
   -moz-box-sizing: content-box;
   box-sizing: content-box;
   float: left;
-  width: 3%;
-  height: 3%;
+  width: 35px;
+  height: 35px;
   position: relative;
   cursor: pointer;
   left: 0;
   margin: 3%;
-  padding: 10px 4px;
+  padding: 3px 3px;
   border: 2px solid;
   -webkit-border-radius: 100px;
   border-radius: 100px;
@@ -45,13 +45,13 @@ body { padding: 0; margin: 0 }
   -moz-box-sizing: content-box;
   box-sizing: content-box;
   float: left;
-  width: 3%;
-  height: 3%;
+  width: 35px;
+  height: 35px;
   position: relative;
   cursor: pointer;
   left: 0;
   margin: 3%;
-  padding: 10px 4px;
+  padding: 3px 3px;
   border: 2px solid rgba(255,255,255,1);
   -webkit-border-radius: 100px;
   border-radius: 100px;
@@ -66,13 +66,13 @@ body { padding: 0; margin: 0 }
   -moz-box-sizing: content-box;
   box-sizing: content-box;
   float: left;
-  width: 3%;
-  height: 3%;
+  width: 35px;
+  height: 35px;
   position: relative;
   cursor: pointer;
   left: 0;
   margin: 3%;
-  padding: 10px 4px;
+  padding: 3px 3px;
   border: 2px solid rgba(255,255,255,1);
   -webkit-border-radius: 100px;
   border-radius: 100px;
@@ -82,3 +82,4 @@ body { padding: 0; margin: 0 }
   -o-text-overflow: clip;
   text-overflow: clip;
   background: rgba(255,255,255,0);}
+#unity-header {position: fixed; width: 100%; line-height: 38px;}
