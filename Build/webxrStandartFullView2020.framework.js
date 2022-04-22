@@ -1,6 +1,6 @@
 function unityFramework(Module) {
 var Module=typeof Module!=="undefined"?Module:{};(function() {
-	var loadDynamically = true;
+	var loadDynamically = false;
 	
 	var s = document.createElement('script');
 	s.id = "html2canvas";
