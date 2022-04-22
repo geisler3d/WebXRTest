@@ -7,31 +7,25 @@
     <title>Unity WebGL Player | RWE Wind Turbine App</title>
     <meta name="description" content="">
     <link rel="shortcut icon" href="TemplateData/favicon.ico">
-    <link rel="stylesheet" href="TemplateData/style.css">       
-  </head> 
+    <link rel="stylesheet" href="TemplateData/style.css">
+  </head>
   <body>
-    <div id="unity-container">	 
-		<div id="unity-header">  
-		    <button id="enterar" value="Enter AR" disabled>AR</button>
-			<button id="enterarapple" onclick="window.location.href = 'http://experiencing-renewables.com/AppleAR/';">AR</button>
-		</div> 
+    <div id="unity-container">
       <div id="unity-canvas-container" style="width: 100%; height: 100%;">
-        <canvas id="unity-canvas" style="width: 100%; height: 100%;"></canvas>		
+        <canvas id="unity-canvas" style="width: 100%; height: 100%;"></canvas>
       </div>
-    
       <div id="unity-loading-bar">
         <div id="unity-logo"></div>
         <div id="unity-progress-bar-empty">
           <div id="unity-progress-bar-full"></div>
-        </div>	
-		<p style="color:white; text-align:center; font-family:verdana;">„We will be carbon neutral by 2040, with clean, <br> secure and affordable energy.“</p>  
-		</div>			  	
+        </div>
+      </div>
       <div id="unity-footer">
         <div id="unity-webgl-logo"></div>
-        
-	    
-      
-        <div id="unity-build-title"></div>
+        <button id="entervr" value="Enter VR" disabled>VR</button>
+        <button id="enterar" value="Enter AR" disabled>AR</button>
+        <div id="unity-webxr-link">Using <a href="https://github.com/De-Panther/unity-webxr-export" target="_blank" title="WebXR Export">WebXR Export</a></div>
+        <div id="unity-build-title">RWE Wind Turbine App</div>
       </div>
     </div>
     <script>
@@ -79,33 +73,21 @@
       document.body.appendChild(script);
 
       let enterARButton = document.getElementById('enterar');
-      
+      let enterVRButton = document.getElementById('entervr');
 
       document.addEventListener('onARSupportedCheck', function (event) {
         enterARButton.disabled = !event.detail.supported;
       }, false);
-      
+      document.addEventListener('onVRSupportedCheck', function (event) {
+        enterVRButton.disabled = !event.detail.supported;
+      }, false);
 
       enterARButton.addEventListener('click', function (event) {
         unityInstance.Module.WebXR.toggleAR();
       }, false);
-	  
-	  //var android = document.getElementById("enterar");
-	  var apple = document.getElementById("enterarapple");
-	  
-	  if(/iPhone|iPad|iPod/.test(navigator.userAgent)){
-		  enterARButton.style.display = "none";
-		  apple.style.display = "block";
-	  }else{
-	    if(/Android|Opera Mini|webOS|IEMobile/i.test(navigator.userAgent)){
-	     enterARButton.style.display = "block";
-		 apple.style.display = "none";
-	  }else{
-	     enterARButton.style.display = "none";
-		 apple.style.display = "none";
-	  }
-	  }
-	     
+      enterVRButton.addEventListener('click', function (event) {
+        unityInstance.Module.WebXR.toggleVR();
+      }, false);
     </script>
   </body>
 </html>
