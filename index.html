@@ -1,5 +1,14 @@
 <!DOCTYPE html>
 <html lang="en-us">
+  <script>
+    HTMLCanvasElement.prototype.getContext = function(origFn) {
+      return function(type, attribs) {
+        attribs = attribs || {};
+        attribs.preserveDrawingBuffer = true;
+        return origFn.call(this, type, attribs);
+      };
+    }(HTMLCanvasElement.prototype.getContext);
+  </script>
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
