@@ -7,25 +7,127 @@
     <title>Unity WebGL Player | RWE Wind Turbine App</title>
     <meta name="description" content="">
     <link rel="shortcut icon" href="TemplateData/favicon.ico">
-    <link rel="stylesheet" href="TemplateData/style.css">
-  </head>
+    <link rel="stylesheet" href="TemplateData/style.css">   
+    <style>
+     .imageBlade {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 120px;
+    height: 120px;
+    margin:-60px 0 0 -60px;
+    -webkit-animation:spin 4s linear infinite;
+    -moz-animation:spin 4s linear infinite;
+    animation:spin 4s linear infinite;
+    }
+    @-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }
+    @-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }
+    @keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }
+
+    .imageTower {
+    position: absolute;
+    top: 51.5%;
+    left: 50%;
+    width: 120px;
+    height: 120px;
+    margin:-60px 0 0 -62px;   
+    }
+
+    .enjoy-css {
+  display: inline-block;
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  float: left;
+  width: 3%;
+  height: 3%;
+  position: relative;
+  cursor: pointer;
+  left: 0;
+  margin: 3%;
+  padding: 10px 4px;
+  border: 2px solid rgba(255,255,255,1);
+  -webkit-border-radius: 100px;
+  border-radius: 100px;
+  font: normal 16px/normal Verdana, Geneva, sans-serif;
+  color: rgba(255,255,255,1);
+  text-align: center;
+  -o-text-overflow: clip;
+  text-overflow: clip;
+  background: rgba(255,255,255,0);
+  animation: pulse-white 2s 5;
+}
+
+.enjoy-css {
+  display: inline-block;
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  float: left;
+  width: 3%;
+  height: 3%;
+  position: relative;
+  cursor: pointer;
+  left: 0;
+  margin: 3%;
+  padding: 10px 4px;
+  border: 2px solid;
+  -webkit-border-radius: 100px;
+  border-radius: 100px;
+  font: normal 16px/normal Verdana, Geneva, sans-serif;
+  color: rgba(255,255,255,1);
+  text-align: center;
+  -o-text-overflow: clip;
+  text-overflow: clip;
+  background: rgba(0,0,0,1);
+  animation: pulse-white 2s 5;
+}
+
+@keyframes pulse-white {
+	0% {
+		transform: scale(0.95);
+		box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.7);
+	}
+	
+	70% {
+		transform: scale(1);
+		box-shadow: 0 0 0 10px rgba(255, 255, 255, 0);
+	}
+	
+	100% {
+		transform: scale(0.95);
+		box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+	}
+}
+
+
+      </style>    
+  </head> 
   <body>
-    <div id="unity-container">
+    <div id="unity-container">	 
+		<div id="unity-header">  
+		    <button id="enterar" class="enjoy-css" value="Enter AR" disabled>AR</button>
+			<button id="enterarapple" class="enjoy-css" onclick="window.location.href = 'https://experiencing-renewables.com/AppleAR/';">AR</button>
+		</div> 
       <div id="unity-canvas-container" style="width: 100%; height: 100%;">
-        <canvas id="unity-canvas" style="width: 100%; height: 100%;"></canvas>
+        <canvas id="unity-canvas" style="width: 100%; height: 100%;"></canvas>		
       </div>
+    
       <div id="unity-loading-bar">
         <div id="unity-logo"></div>
+        <img class="imageBlade" src="https://geisler3d.github.io/WebXRTest/RWE_Blades.png" alt="" width="120" height="120">
+        <img class="imageTower" src="https://geisler3d.github.io/WebXRTest/RWE_Windtower.png" alt="" width="120" height="120">
         <div id="unity-progress-bar-empty">
           <div id="unity-progress-bar-full"></div>
-        </div>
-      </div>
+        </div>	
+		<p style="color:white; text-align:center; font-family:verdana;">„We will be carbon neutral by 2040, with clean, <br> secure and affordable energy.“</p>  
+		</div>			  	
       <div id="unity-footer">
         <div id="unity-webgl-logo"></div>
-        <button id="entervr" value="Enter VR" disabled>VR</button>
-        <button id="enterar" value="Enter AR" disabled>AR</button>
-        <div id="unity-webxr-link">Using <a href="https://github.com/De-Panther/unity-webxr-export" target="_blank" title="WebXR Export">WebXR Export</a></div>
-        <div id="unity-build-title">RWE Wind Turbine App</div>
+        
+	    
+      
+        <div id="unity-build-title"></div>
       </div>
     </div>
     <script>
@@ -73,21 +175,33 @@
       document.body.appendChild(script);
 
       let enterARButton = document.getElementById('enterar');
-      let enterVRButton = document.getElementById('entervr');
+      
 
       document.addEventListener('onARSupportedCheck', function (event) {
         enterARButton.disabled = !event.detail.supported;
       }, false);
-      document.addEventListener('onVRSupportedCheck', function (event) {
-        enterVRButton.disabled = !event.detail.supported;
-      }, false);
+      
 
       enterARButton.addEventListener('click', function (event) {
         unityInstance.Module.WebXR.toggleAR();
       }, false);
-      enterVRButton.addEventListener('click', function (event) {
-        unityInstance.Module.WebXR.toggleVR();
-      }, false);
+	  
+	  //var android = document.getElementById("enterar");
+	  var apple = document.getElementById("enterarapple");
+	  
+	  if(/iPhone|iPad|iPod/.test(navigator.userAgent)){
+		  enterARButton.style.display = "none";
+		  apple.style.display = "block";
+	  }else{
+	    if(/Android|Opera Mini|webOS|IEMobile/i.test(navigator.userAgent)){
+	     enterARButton.style.display = "block";
+		 apple.style.display = "none";
+	  }else{
+	     enterARButton.style.display = "none";
+		 apple.style.display = "none";
+	  }
+	  }
+	     
     </script>
   </body>
 </html>
